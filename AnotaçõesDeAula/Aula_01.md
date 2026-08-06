@@ -1,6 +1,6 @@
 # Aula 01 - Dia 31.07.2026
 
-As avaliações podem levar uma **folha A4** escrita à mão, e as avaliações têm alto nível de dificuldade.
+As avaliações pode levar uma **folha A4** escrita à mão, e as avaliações têm alto nível de dificuldade.
 
 # Regras Gerais
 
