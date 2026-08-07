@@ -22,7 +22,7 @@ As avaliações pode levar uma **folha A4** escrita à mão, e as avaliações t
   * Três cardinalidade básicas: 1 - 1, 1 - N, N - N. 
 
 Lembrando:
-> Sempre que tiver  (N,N) obrigatoriamente criar um **nova tabela**, que se chama `ENTIDADE ASSOCIATIVA`. Não precisa colocar a chave primária, mas será uma **chave composta**. No modelo conceitual para representar pode ser
+> Sempre que tiver  (N,N) obrigatoriamente criar um **nova tabela**, que se chama `ENTIDADE ASSOCIATIVA`. Não precisa colocar a chave primária, mas será uma **chave composta**. No modelo conceitual para representar pode ser e transformar numa "bandeira do brasil" onde a entidade associativa vai receber o nome que está no retângulo.
 1  N | | N - 1
  
 > O principal motivo do uso de banco de dados em vez do Excel é a integração e a ausência de **duplicidade**, pois cada dado deve conter um índice que o identifique. No modelo conceitual, não é necessário colocar a chave estrangeira.
