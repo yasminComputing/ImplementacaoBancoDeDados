@@ -82,3 +82,73 @@ ALTER TABLE livro
 CHANGE id ISBN VARCHAR(200);
 
 ```
+## Inserindo Dados
+Inserção de dados e usando o `select`:
+
+```sql
+-- Criando meu banco
+CREATE DATABASE biblioteca;
+-- Colocando o banco criado em uso
+USE biblioteca;
+-- Criando tabela
+CREATE TABLE autor(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    nacionalidade VARCHAR(100) NOT NULL,
+    ano_nascimento YEAR
+);
+
+CREATE TABLE editora(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR (100) NOT NULL,
+    cidade VARCHAR(50),
+    site VARCHAR(100),
+    ano_fundacao YEAR
+);
+
+CREATE TABLE livro(
+	ISBN CHAR(13) PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL,
+    ano_publicacao YEAR,
+    fk_id_autor INT,
+    fk_id_editora INT,
+	FOREIGN KEY (fk_id_autor) REFERENCES autor(id),
+	FOREIGN KEY (fk_id_editora) REFERENCES editora(id)
+);
+-- Inserindo registros nas tabelas
+-- aconselhavel usar esse comando
+INSERT INTO autor(nome,nacionalidade,ano_nascimento)
+VALUES('Machado de Assis','Brasileiro',1939);
+INSERT INTO autor(nome,nacionalidade,ano_nascimento)
+VALUES('Juca da Silva','Brasileiro',2010);
+
+INSERT INTO autor 
+VALUES(NULL,'George Orwell', 'Britânico',1903);
+
+-- Recuperando as informacoes
+SELECT * FROM autor;
+-- Deletando
+DELETE FROM autor
+WHERE autor.id = 3;
+
+
+-- Update
+UPDATE autor
+SET autor.nacionalidade = "Brasileiro"
+WHERE autor.id = 2;
+
+INSERT INTO editora (nome,cidade,site,ano_fundacao)
+VALUES 
+("Companhia das Letras","São Paulo","www.cdl.br",1986),
+("Penguin","Londres","www.pg.ldn",1935);
+
+SELECT * FROM editora;
+
+INSERT INTO livro(ISBN,titulo,ano_publicacao,fk_id_autor,fk_id_editora)
+VALUES
+("Dom Cassuro","9845464",1910,1,1),
+("1984","8849848",1949,2,2);
+
+SELECT * FROM livro;
+
+```
