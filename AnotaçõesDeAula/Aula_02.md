@@ -146,9 +146,24 @@ SELECT * FROM editora;
 
 INSERT INTO livro(ISBN,titulo,ano_publicacao,fk_id_autor,fk_id_editora)
 VALUES
-("Dom Cassuro","9845464",1910,1,1),
+("9845464","Dom Cassuro",1910,1,1),
 ("1984","8849848",1949,2,2);
 
+TRUNCATE livro;
+
 SELECT * FROM livro;
+
+SELECT l.titulo,l.ano_publicacao
+FROM livro AS l
+WHERE l.titulo LIKE "%Dom%";
+
+-- Juntando as tabelas e mudando a nomeação das tabelas quando consultar
+SELECT l.titulo AS "Título",
+l.ano_publicacao AS "Ano",
+CONCAT ( a.nome, "/" ,a.nacionalidade) AS "Autor/Naciolidade",
+e.nome AS "Editora"
+FROM livro AS l
+JOIN autor as a ON l.fk_id_autor = a.id
+JOIN editora as e ON l.fk_id_editora = e.id;
 
 ```
