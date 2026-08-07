@@ -18,7 +18,8 @@ As avaliações pode levar uma **folha A4** escrita à mão, e as avaliações t
   * No atributo pode ser (1, N), o que significa que pode conter um para muitos.
   * Para fazer a cardinalidade, sempre tem que pegar o máximo e o mínimo (minimax).
   * Quando tem um caso de (1,1) gerencia (0,1) a chave-estrangeira ficará no `Departamento`.
-  * Sempre que tiver um caso (1,1) sempre se perguntar `Faz sentido ter essa entidade?`. 
+  * Sempre que tiver um caso (1,1) sempre se perguntar `Faz sentido ter essa entidade?`.
+  * Três cardinalidade básicas: 1 - 1, 1 - N, N - N. 
 
 Lembrando:
 > Sempre que tiver  (N,N) obrigatoriamente criar um **nova tabela**, que se chama `ENTIDADE ASSOCIATIVA`. Não precisa colocar a chave primária, mas será uma **chave composta**. No modelo conceitual para representar pode ser
