@@ -29,3 +29,56 @@ São a criação e alterações dentro do banco de dados SQL:
 * `CREATE INDEX`: para melhorar a velocidade de busca/retrieval de dados, os índices podem ser criados em colunas específicas. 
 
 No repositório do professor tem mais intruções sobre criação de banco de dados ([INSTRUÇÕES](https://github.com/Herysson/Projeto-de-Banco-de-Dados/blob/main/Aula%2008%20-%20Instru%C3%A7%C3%B5es%20DDL%20-%20CREATE%2C%20ALTER%20e%20DROP.md))
+
+## Comandos Básico
+Comandos Básico realizado em aula usando o MySQL WorkBench
+```sql
+-- Criando meu banco
+CREATE DATABASE biblioteca;
+-- Colocando o banco criado em uso
+USE biblioteca;
+-- Criando tabela
+CREATE TABLE autor(
+	id INT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    nacionalidade VARCHAR(100) NOT NULL
+);
+-- Exibe as tabelas
+SHOW TABLES;
+
+-- EXIBE METADADOS DA TABELA
+DESC autor;
+
+
+CREATE TABLE livro(
+	id INT PRIMARY KEY,
+    titulo TEXT NOT NULL,
+    ano_publicacao YEAR NOT NULL,
+    fk_id_autor INT
+);
+
+-- Remover a tabela livro
+-- DROP TABLE livro;
+
+-- Adicionando FK via alteração
+ALTER TABLE livro 
+ADD CONSTRAINT fk_autor -- nome da restrição
+FOREIGN KEY (fk_id_autor) REFERENCES autor (id);
+
+-- Adicionando uma nova coluna
+ALTER TABLE livro
+ADD genero VARCHAR(100) NOT NULL;
+
+-- Removendo uma coluna
+ALTER TABLE livro
+DROP COLUMN genero;
+
+-- Modificando tipo de dado de uma coluna
+ALTER TABLE autor
+MODIFY COLUMN nacionalidade CHAR(2);
+
+-- Alterando nome de uma coluna
+ALTER TABLE livro
+CHANGE id ISBN VARCHAR(200);
+
+```
