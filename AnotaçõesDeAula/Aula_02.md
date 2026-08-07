@@ -28,3 +28,4 @@ São a criação e alterações dentro do banco de dados SQL:
 * `FOREIGN KEY`: para definir uma chave estrangeira, estabelecendo uma relação entre tabelas.
 * `CREATE INDEX`: para melhorar a velocidade de busca/retrieval de dados, os índices podem ser criados em colunas específicas. 
 
+No repositório do professor tem mais intruções sobre criação de banco de dados ([INSTRUÇÕES](https://github.com/Herysson/Projeto-de-Banco-de-Dados/blob/main/Aula%2008%20-%20Instru%C3%A7%C3%B5es%20DDL%20-%20CREATE%2C%20ALTER%20e%20DROP.md))
