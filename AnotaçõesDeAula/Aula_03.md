@@ -160,6 +160,6 @@ FROM FUNCIONARIO AS F;
 -- LIKE recupe os funcionarios que nasceram no ano de 72
 SELECT *
 FROM FUNCIONARIO AS F
-WHERE F.Datanasc LIKE '%72%';
+WHERE F.Datanasc LIKE '__72%';
 
 ```
