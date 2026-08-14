@@ -112,7 +112,54 @@ SELECT *
 FROM FUNCIONARIO AS F
 WHERE F.Salario = @salario_min;
 -- até aqui 
+-- MAX()
+DECLARE @salario_max DECIMAL(10,2); -- não fica salvo em memória só em tempo de execução
+SET @salario_max =(SELECT MAX(Salario)FROM FUNCIONARIO);
+PRINT @salario_max;
+
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Salario = @salario_max;
+```
+> Select alinhado é criar um select que resolve metade de um problema e depois construir o resto.
+
+---
+
+- `COUNT() | AVG() | SUM()`
+```sql
+-- COUNT() quantos funcionários possui cadastrados no banco?
+SELECT COUNT(F.Cpf) as 'Quantidade de Funcionário '
+FROM FUNCIONARIO AS F;
+
+SELECT 
+		(SELECT COUNT(F.Cpf)FROM FUNCIONARIO AS F)+ 
+		(SELECT COUNT(D.Nome_dependente) FROM DEPENDENTE AS D)
+		AS 'Qtde Pessoas';
+
+-- AVG() : qual é a média salarial dos funcionários
+SELECT AVG(F.Salario) as 'Média Salarial'
+FROM FUNCIONARIO AS F;
+
+-- quem ganha abaixo da média
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Salario < (SELECT AVG(Salario) FROM FUNCIONARIO)
+ORDER BY F.Salario ASC;
+
+-- SUM(): qual custo mensal com folha de pagamento 
+SELECT SUM(F.Salario) as 'Custo Mensal'
+FROM FUNCIONARIO AS F;
+-- custo anual
+SELECT SUM(F.Salario)*12 as 'Custo Anual'
+FROM FUNCIONARIO AS F;
 
 ```
+- `LIKE`:
 
-> Select alinhado é criar um select que resolve metade de um problema e depois construir o resto.
+```sql
+-- LIKE recupe os funcionarios que nasceram no ano de 72
+SELECT *
+FROM FUNCIONARIO AS F
+WHERE F.Datanasc LIKE '%72%';
+
+```
