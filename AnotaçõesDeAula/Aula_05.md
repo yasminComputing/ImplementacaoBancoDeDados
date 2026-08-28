@@ -1,5 +1,5 @@
 ## Aula 05 - Dia 28.08.2026
----
+
 ### INTERSECT
 
 ```sql
@@ -63,10 +63,9 @@ GROUP BY P.Projnome;
 --- 
 
 ### HAVING
-A cláusula HAVING foi adicionada ao SQL porque a palavra-chave WHERE não
-pode ser usada com funções agregadas.
+A cláusula HAVING foi adicionada ao SQL porque a palavra-chave WHERE não pode ser usada com funções agregadas.
 
-*QUANDO USO O GROUP BY E QUERO FAZER UMA FILTRAGEM TENHO QUE USAR O HAVING.*
+*QUANDO FAZER O USO DO GROUP BY E QUERO FAZER UMA FILTRAGEM TENHO QUE USAR O HAVING.*
 
 ```sql
 -- HAVING: Encontrar departamentos com mais de 3 funcionários
@@ -82,5 +81,4 @@ FROM PROJETO AS P
 JOIN TRABALHA_EM AS T ON T.Pnr = P.Projnumero
 GROUP BY P.Projnome
 HAVING SUM(T.Horas) >= 50;
-
 ```
