@@ -44,6 +44,8 @@ O *JOIN* é usado para combinar linhas de duas ou mais tabelas, com base em uma 
 
 ### **INNER JOIN**
 Apenas os registros que possuem correspondência nas duas tabelas. Ou seja, retorna somente os dados que estão relacionados entre elas.
+
+> Não importa a ordem que colocar no inner join, só muda quando aparecer o resultado o primeiro colocado irá aparecer na tabela. 
 ```sql
 -- INNER JOIN: Selecionar o primeiro nome, último nome, endereço dos funcionários que trabalham no departamento de
 -- “Pesquisa”
@@ -84,7 +86,7 @@ WHERE P.Projlocal = 'Mauá';
 ---
 
 ### **LEFT JOIN**
-Os registros da tabela da esquerda, mesmo que não exista um registro correspondente na tabela da direita. Por exemplo, mostra todos os funcionários, inclusive aqueles que não estão vinculados a nenhum departamento.
+Os registros da tabela da esquerda, mesmo que não exista um registro correspondente na tabela da direita. Por exemplo, mostra todos os funcionários, inclusive aqueles que não estão vinculados a nenhum departamento (NULL).
 
 ```sql
 -- LEFT JOIN: Liste o último nome de TODOS os funcionários e o 
@@ -115,12 +117,10 @@ SELECT *
 FROM FUNCIONARIO AS F
 RIGHT JOIN DEPARTAMENTO AS D ON F.Dnr = D.Dnumero
 WHERE F.Cpf IS NULL;
-
-
 ```
 --- 
 
-### **FULL JOIN**
+### **FULL/CROSS(mySQL) JOIN**
 Retorna todos os registros de ambas as tabelas. 
 
 ```sql
@@ -148,7 +148,7 @@ ORDER BY SUPERVISOR ASC;
 
 ### UNION
 Operador UNION é usado para combinar o conjunto de resultados de duas ou
-mais instruções SELECT.Cada instrução SELECT dentro de UNION deve ter o mesmo número de colunas. 
+mais instruções SELECT.Cada instrução SELECT dentro de UNION deve ter o mesmo número de colunas. Elimina a duplicidade. 
 ```sql
 -- UNION: Listar todos os nomes, sexo e data de nascimento de todas as pessoas do banco.
 
@@ -164,20 +164,15 @@ SELECT
 		D.Datanasc as "Data"
 FROM DEPENDENTE AS D;
 ```
-
-### INTERSECT
-
-
+> Union ALL: ele trás as duplicidades da tabelas. 
 ```sql
+-- UNION ALL: Imagine que a diretoria da empresa quer uma lista de todas as cidades onde a empresa possui
+-- alguma atividade, seja a localização de um departamento ou a localização de um projeto
 
-
-
-```
-
-### EXCEPT
-
-```sql
-
-
+SELECT P.Projlocal AS "Local"
+FROM PROJETO AS P
+UNION ALL
+SELECT L.Dlocal AS "Local"
+FROM LOCALIZACAO_DEP AS L;
 
 ```
