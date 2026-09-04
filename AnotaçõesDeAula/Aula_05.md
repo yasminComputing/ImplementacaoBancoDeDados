@@ -209,8 +209,4 @@ SET @idade_atual = YEAR(GETDATE()) - YEAR(@data_nasc);
 PRINT 'A Jennifer tem: ' + CAST(@idade_atual AS VARCHAR(5));
 
 PRINT DATEDIFF(YEAR,@data_nasc, GETDATE());
-
-
-
-
 ```
