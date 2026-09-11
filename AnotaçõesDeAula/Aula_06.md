@@ -325,3 +325,5 @@ DEALLOCATE cursorFuncionario;
 ```
 ## Atividade
 Desenvolver uma lista de exercícios escolher 5 dos exercícios para entregar. Nesta lista vai ser algo parecido na avaliação. 
+
+**Atividade Desenvolvida: ([Exercicio](https://github.com/yasminComputing/ImplementacaoBancoDeDados/tree/main/CodigoExercicios_SQL_Aula_04.09))**
