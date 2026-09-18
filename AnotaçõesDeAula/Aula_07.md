@@ -73,7 +73,7 @@ FROM FUNCIONARIO;
 ```
 ---
 ### Funções Inline
-
+**Retona um tabela.**
 ```sql
 
 GO
@@ -251,7 +251,4 @@ END
 GO
 
 EXEC dbo.sp_lista @nome_dpto ='Pesquisa';
-
-
-
 ```
