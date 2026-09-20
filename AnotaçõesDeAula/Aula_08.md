@@ -1,5 +1,6 @@
 ## Aula 08 - Dia 18.09.2026
 Nesta aula será realizado a revisão para avaliação I e também um assunto novo que não irá cair na avaliação. 
+
 ---
 ## Exercício utilizando PROCEDURE
 ```sql
