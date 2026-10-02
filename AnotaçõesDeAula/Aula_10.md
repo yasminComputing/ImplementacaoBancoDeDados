@@ -10,3 +10,5 @@ Correção da Avaliação I:
 6(Bonus) - correta letra C
 7 a 13 - são questões de comando sql acertei todas e tive um pequeno erro na questão 13 que foi descontado nota. 
 ```
+
+> códigos da melhoria, apresentação slides e defesa, resumo do pensamento.dica: apresentar ideia /melhoria que tenha um dominio e em coisas úteis. 

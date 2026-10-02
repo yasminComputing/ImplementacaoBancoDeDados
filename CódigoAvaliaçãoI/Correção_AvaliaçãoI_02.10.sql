@@ -139,3 +139,47 @@ JOIN HISTORICO_ESCOLAR AS H ON A.Numero_aluno = H.Numero_aluno
 JOIN TURMA AS T ON H.Identificacao_turma = T.Identificacao_turma
 JOIN DISCIPLINA AS D ON T.Numero_disciplina = D.Numero_disciplina;
 GO
+
+---
+
+---13
+GO
+CREATE OR ALTER PROCEDURE usp_CadastrarDisciplina(@numero_disciplina VARCHAR(10),@nome_disciplina VARCHAR(100),@creditos INT, @departamento VARCHAR(10))
+AS
+BEGIN
+		IF EXISTS (
+			SELECT 1
+			FROM DISCIPLINA 
+			WHERE Numero_disciplina = @numero_disciplina
+		)
+		BEGIN
+			PRINT 'Já existe essa disciplina com este código: ' + @numero_disciplina
+			RETURN;
+		END
+		IF EXISTS (
+			SELECT 1
+			FROM DISCIPLINA 
+			WHERE @nome_disciplina = Nome_disciplina
+		)
+		BEGIN
+			PRINT 'Já existe essa disciplina com este nome: ' + @nome_disciplina
+			RETURN;
+		END
+		IF(@creditos <= 0)
+		BEGIN
+			PRINT 'Quantidade de créditos precisa ser < 0';
+			RETURN;
+		END
+
+		INSERT INTO DISCIPLINA (Numero_disciplina,Nome_disciplina,Creditos,Departamento)
+		VALUES(@numero_disciplina,@nome_disciplina,@creditos,@departamento)
+	    PRINT 'Disciplina cadastrada com sucesso!';
+
+
+END;
+GO
+
+EXEC dbo.usp_CadastrarDisciplina 'CC1001','Disciplina do capeta','66','História';
+EXEC dbo.usp_CadastrarDisciplina '888','Banco de Dados I','66','História';
+EXEC dbo.usp_CadastrarDisciplina '888','Disciplina do capeta','-66','História';
+EXEC dbo.usp_CadastrarDisciplina '888T','Disciplina de Historia','66','História';
