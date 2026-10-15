@@ -242,3 +242,14 @@ EXEC dbo.usp_inserirUsuario @id = 100,@nome = 'Pedro',@saldo = 600;
 
 EXEC dbo.usp_inserirUsuario @id = 90,@nome = 'Tiago',@saldo = 600;
 ```
+--- 
+
+| Comando | Descrição |
+|---|---|
+| `BEGIN TRANSACTION` | Inicia uma transação, agrupando operações que podem ser confirmadas ou desfeitas. |
+| `COMMIT` | Confirma as alterações realizadas na transação e salva os dados. |
+| `ROLLBACK` | Desfaz as alterações realizadas na transação. |
+| `SAVE TRANSACTION` (Savepoint) | Cria um ponto de salvamento dentro da transação, permitindo desfazer apenas as alterações feitas depois dele. |
+| `@@ERROR` | Retorna o código de erro do último comando executado. Se retornar `0`, não houve erro; se retornar outro valor, ocorreu um erro. Deve ser verificado imediatamente após o comando. |
+| `@@ROWCOUNT` | Informa quantas linhas foram afetadas pelo último comando. É útil para verificar quantos registros foram inseridos, atualizados ou excluídos. |
+| `TRY...CATCH` | Serve para tratar erros. O código dentro do `TRY` é executado normalmente; se ocorrer um erro capturado, a execução passa para o `CATCH`, onde podemos mostrar a mensagem de erro ou desfazer uma transação. |
