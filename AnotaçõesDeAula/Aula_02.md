@@ -1,0 +1,169 @@
+# Aula 02 — 07/08/2026
+
+## Retomada da Revisão de SQL
+
+Quando uma **seta em negrito** é utilizada em um diagrama, ela representa uma **entidade fraca**. Isso significa que a entidade possui uma **chave primária composta**, formada pela chave estrangeira (FK) da entidade principal.
+
+### Exemplo
+
+**Funcionário (1,1) ──> Dependente (0,N)**
+
+Nesse caso, **Dependente** é uma entidade fraca, pois sua existência depende da entidade **Funcionário**. Portanto, ao desativar um funcionário, todos os seus dependentes também serão desativados.
+
+> **Observações**
+>
+> * A **seta contínua em negrito** representa uma **entidade fraca**.
+> * **Autorrelacionamento**: ocorre quando uma entidade se relaciona consigo mesma. Exemplo: identificar **quem é chefe de quem** dentro da entidade **Funcionário**.
+
+## DDL
+São a criação e alterações dentro do banco de dados SQL:
+* `CREATE DATABASE`: para criar um novo banco de dados.
+* `DROP DATABASE`: para excluir um banco de dados existente.
+* `CREATE TABLE`: para criar novas tabelas dentro de um banco de dados.
+* `DROP TABLE`: para excluir uma tabela existente e todos os seus dados.
+* `TRUNCATE TABLE`: para remover todos os registros de uma tabela sem excluir a tabela em si.
+* `RENAME TABLE`: para renomear uma tabela existente.
+* `ALTER TABLE`: para modificar a estrutura de uma tabela existente, como adicionar uma nova restrição de chave estrangeira.
+* `PRIMARY KEY`: para definir a chave primária de uma tabela.
+* `FOREIGN KEY`: para definir uma chave estrangeira, estabelecendo uma relação entre tabelas.
+* `CREATE INDEX`: para melhorar a velocidade de busca/retrieval de dados, os índices podem ser criados em colunas específicas. 
+
+No repositório do professor tem mais intruções sobre criação de banco de dados ([INSTRUÇÕES](https://github.com/Herysson/Projeto-de-Banco-de-Dados/blob/main/Aula%2008%20-%20Instru%C3%A7%C3%B5es%20DDL%20-%20CREATE%2C%20ALTER%20e%20DROP.md))
+
+## Comandos Básico
+Comandos Básico realizado em aula usando o MySQL WorkBench
+```sql
+-- Criando meu banco
+CREATE DATABASE biblioteca;
+-- Colocando o banco criado em uso
+USE biblioteca;
+-- Criando tabela
+CREATE TABLE autor(
+	id INT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    nacionalidade VARCHAR(100) NOT NULL
+);
+-- Exibe as tabelas
+SHOW TABLES;
+
+-- EXIBE METADADOS DA TABELA
+DESC autor;
+
+
+CREATE TABLE livro(
+	id INT PRIMARY KEY,
+    titulo TEXT NOT NULL,
+    ano_publicacao YEAR NOT NULL,
+    fk_id_autor INT
+);
+
+-- Remover a tabela livro
+-- DROP TABLE livro;
+
+-- Adicionando FK via alteração
+ALTER TABLE livro 
+ADD CONSTRAINT fk_autor -- nome da restrição
+FOREIGN KEY (fk_id_autor) REFERENCES autor (id);
+
+-- Adicionando uma nova coluna
+ALTER TABLE livro
+ADD genero VARCHAR(100) NOT NULL;
+
+-- Removendo uma coluna
+ALTER TABLE livro
+DROP COLUMN genero;
+
+-- Modificando tipo de dado de uma coluna
+ALTER TABLE autor
+MODIFY COLUMN nacionalidade CHAR(2);
+
+-- Alterando nome de uma coluna
+ALTER TABLE livro
+CHANGE id ISBN VARCHAR(200);
+
+```
+## Inserindo Dados
+Inserção de dados e usando o `select`:
+
+```sql
+-- Criando meu banco
+CREATE DATABASE biblioteca;
+-- Colocando o banco criado em uso
+USE biblioteca;
+-- Criando tabela
+CREATE TABLE autor(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    nacionalidade VARCHAR(100) NOT NULL,
+    ano_nascimento YEAR
+);
+
+CREATE TABLE editora(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR (100) NOT NULL,
+    cidade VARCHAR(50),
+    site VARCHAR(100),
+    ano_fundacao YEAR
+);
+
+CREATE TABLE livro(
+	ISBN CHAR(13) PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL,
+    ano_publicacao YEAR,
+    fk_id_autor INT,
+    fk_id_editora INT,
+	FOREIGN KEY (fk_id_autor) REFERENCES autor(id),
+	FOREIGN KEY (fk_id_editora) REFERENCES editora(id)
+);
+-- Inserindo registros nas tabelas
+-- aconselhavel usar esse comando
+INSERT INTO autor(nome,nacionalidade,ano_nascimento)
+VALUES('Machado de Assis','Brasileiro',1939);
+INSERT INTO autor(nome,nacionalidade,ano_nascimento)
+VALUES('Juca da Silva','Brasileiro',2010);
+
+INSERT INTO autor 
+VALUES(NULL,'George Orwell', 'Britânico',1903);
+
+-- Recuperando as informacoes
+SELECT * FROM autor;
+-- Deletando
+DELETE FROM autor
+WHERE autor.id = 3;
+
+
+-- Update
+UPDATE autor
+SET autor.nacionalidade = "Brasileiro"
+WHERE autor.id = 2;
+
+INSERT INTO editora (nome,cidade,site,ano_fundacao)
+VALUES 
+("Companhia das Letras","São Paulo","www.cdl.br",1986),
+("Penguin","Londres","www.pg.ldn",1935);
+
+SELECT * FROM editora;
+
+INSERT INTO livro(ISBN,titulo,ano_publicacao,fk_id_autor,fk_id_editora)
+VALUES
+("9845464","Dom Cassuro",1910,1,1),
+("1984","8849848",1949,2,2);
+
+TRUNCATE livro;
+
+SELECT * FROM livro;
+
+SELECT l.titulo,l.ano_publicacao
+FROM livro AS l
+WHERE l.titulo LIKE "%Dom%";
+
+-- Juntando as tabelas e mudando a nomeação das tabelas quando consultar
+SELECT l.titulo AS "Título",
+l.ano_publicacao AS "Ano",
+CONCAT ( a.nome, "/" ,a.nacionalidade) AS "Autor/Naciolidade",
+e.nome AS "Editora"
+FROM livro AS l
+JOIN autor as a ON l.fk_id_autor = a.id
+JOIN editora as e ON l.fk_id_editora = e.id;
+
+```
