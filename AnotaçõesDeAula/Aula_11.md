@@ -18,6 +18,11 @@ Exemplo: se tiver cinco INSERT todos devem ser corretamente funcionando para fun
 - Controlar múltiplas operações simultâneas
 
 ---
+### Autocommit × Transação Explícita
+- Autocommit: cada comando SQL é confirmado automaticamente quando executado com sucesso. Não precisa de COMMIT.
+- Transação Explícita: permite controlar manualmente um conjunto de operações usando BEGIN TRANSACTION, COMMIT ou ROLLBACK.
+
+---
 
 ### Atomicidade
 Garante que uma transação é tratada como uma única unidade, ou seja, não é divivel, que significa que ela deve ser completamente concluída ou totalmente desfeita.
